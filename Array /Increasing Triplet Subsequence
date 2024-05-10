@@ -1,0 +1,17 @@
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        # Initialize two variables to store the smallest and second smallest elements
+        smallest = float('inf')
+        second_smallest = float('inf')
+    
+        for num in nums:
+            # Update the smallest element if the current number is smaller
+            if num <= smallest:
+                smallest = num
+            # Update the second smallest element if the current number is greater than the smallest
+            elif num <= second_smallest:
+                second_smallest = num
+            # If the current number is greater than both smallest and second smallest, a triplet is found
+            else:
+                return True
+        return False
