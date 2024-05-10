@@ -1,1 +1,8 @@
-
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        non_zero_ptr = 0
+        for i in range(len(nums)):
+            # If the current element is non-zero, swap it with the element at non_zero_ptr position
+            if nums[i] != 0:
+                nums[i], nums[non_zero_ptr] = nums[non_zero_ptr], nums[i]
+                non_zero_ptr += 1
