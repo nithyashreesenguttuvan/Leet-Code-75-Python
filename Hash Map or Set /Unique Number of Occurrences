@@ -1,0 +1,12 @@
+class Solution:
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        count_map = {}
+        for num in arr:
+            count_map[num] = count_map.get(num, 0) + 1
+        occurrence_count = {}
+        for count in count_map.values():
+            occurrence_count[count] = occurrence_count.get(count, 0) + 1
+        for value in occurrence_count.values():
+            if value > 1:
+                return False
+        return True
