@@ -1,0 +1,19 @@
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        from collections import deque
+
+        n = len(rooms)
+        visited = [False] * n
+        queue = deque([0])
+        visited[0] = True
+        visited_rooms_count = 1
+    
+        while queue:
+            current_room = queue.popleft()
+            for key in rooms[current_room]:
+                if not visited[key]:
+                    visited[key] = True
+                    visited_rooms_count += 1
+                    queue.append(key)
+    
+        return visited_rooms_count == n
