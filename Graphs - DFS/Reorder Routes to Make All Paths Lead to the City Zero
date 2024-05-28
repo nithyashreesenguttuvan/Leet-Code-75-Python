@@ -1,0 +1,22 @@
+class Solution:
+    def minReorder(self, n: int, connections: List[List[int]]) -> int:
+        from collections import defaultdict, deque
+
+        graph = defaultdict(list)
+        for a, b in connections:
+            graph[a].append((b, 1))  # 1 indicates original direction from a to b
+            graph[b].append((a, 0))  # 0 indicates reverse direction from b to a
+
+        queue = deque([0])
+        visited = set([0])
+        changes = 0
+
+        while queue:
+            current = queue.popleft()
+            for neighbor, direction in graph[current]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    changes += direction
+                    queue.append(neighbor)
+                
+        return changes
