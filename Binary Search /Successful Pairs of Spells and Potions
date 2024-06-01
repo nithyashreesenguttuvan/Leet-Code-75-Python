@@ -1,0 +1,16 @@
+class Solution:
+    def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
+        # Sort the potions array to use binary search
+        potions.sort()
+        m = len(potions)
+        result = []
+    
+        for spell in spells:
+        # Calculate the minimum potion strength required for this spell to be successful
+            min_potion_strength = (success + spell - 1) // spell  # ceiling division
+        # Use binary search to find the first potion that is >= min_potion_strength
+            index = bisect_left(potions, min_potion_strength)
+        # All potions from this index to the end are successful pairs
+            result.append(m - index)
+    
+        return result
