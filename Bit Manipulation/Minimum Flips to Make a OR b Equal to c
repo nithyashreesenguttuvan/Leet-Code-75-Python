@@ -1,0 +1,18 @@
+class Solution:
+    def minFlips(self, a: int, b: int, c: int) -> int:
+        flips = 0
+        for i in range(31):  # since 1 <= a, b, c <= 10^9, we consider 31 bits (as the 31st bit will not exceed 10^9)
+            bit_a = (a >> i) & 1
+            bit_b = (b >> i) & 1
+            bit_c = (c >> i) & 1
+
+            if bit_c == 0:
+                if bit_a == 1:
+                    flips += 1
+                if bit_b == 1:
+                    flips += 1
+            else:  # bit_c == 1
+                if bit_a == 0 and bit_b == 0:
+                    flips += 1
+
+        return flips
